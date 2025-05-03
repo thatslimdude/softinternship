@@ -1,5 +1,0 @@
-hello
-world
-mad ogit
-normal git 
-
