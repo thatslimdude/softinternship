@@ -75,7 +75,7 @@ END;
 
 BEGIN
 make_deposit('ACC001',1000);
-make_withdrawal(ACC002',3000);
+make_withdrawal('ACC002',3000);
 make_withdrawal('ACC002',5000);
 END;
 /
