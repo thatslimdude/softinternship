@@ -28,8 +28,11 @@ END;
 CREATE OR REPLACE PROCEDURE make_deposit(
 p_account_number IN VARCHAR2,
 p_amount IN NUMBER
-)AS
+)AS d_count NUMBER;
 BEGIN
+SELECT COUNT(*) INTO d_count FROM bank_account
+WHERE p_account_number=account_number;
+
 IF p_amount>0 THEN
 UPDATE bank_account SET balance= balance + p_amount;
 ELSE
