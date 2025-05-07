@@ -28,11 +28,8 @@ END;
 CREATE OR REPLACE PROCEDURE make_deposit(
 p_account_number IN VARCHAR2,
 p_amount IN NUMBER
-)AS d_count NUMBER;
+)AS
 BEGIN
-SELECT COUNT(*) INTO d_count FROM bank_account
-WHERE p_account_number=account_number;
-
 IF p_amount>0 THEN
 UPDATE bank_account SET balance= balance + p_amount;
 ELSE
@@ -58,7 +55,8 @@ SELECT balance INTO curr_balance FROM bank_account
 WHERE p_account_number=account_number;
 
 IF p_amount< curr_balance THEN
-UPDATE bank_account SET balance=curr_balance - p_amount;
+UPDATE bank_account SET balance=curr_balance - p_amount
+WHERE p_account_number=account_number;
 dbms_output.put_line ('Withdrawal Successful');
 ELSE
 dbms_output.put_line ('Insufficient Funds');
@@ -72,12 +70,11 @@ END;
 /
 
 BEGIN
-make_deposit('ACC001',1000);
-make_withdrawal('ACC002',2000);
-make_withdrawal('ACC002',5000);
+make_withdrawal('ACC001',1000);
 END;
 /
 
+SELECT * FROM bank_account;
 
 
 
