@@ -13,7 +13,7 @@ AS v_balance NUMBER;
 v_count NUMBER;
 BEGIN
     SELECT COUNT(*) INTO v_count FROM account_table WHERE account_number=p_from_account and account_number=p_to_account;
-    IF v_count>0 THEN
+    IF v_count=2 THEN
         IF p_amount >0 THEN
         SELECT account_balance INTO v_balance FROM account_table WHERE account_number=p_from_account;
             IF v_balance > p_amount THEN
